@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRIME MODEL ACADEMY | Модельна академія</title>
+  <meta name="description" content="PRIME MODEL ACADEMY — модельні заняття, позування, дефіле. Онлайн та офлайн. Програма Model Pro, індивідуальні заняття, ціни та запис." />
+
+  <!-- Google Fonts (fashion: serif + clean sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+      PRIME MODEL ACADEMY — Editorial Beige / Taupe style
+      One-file landing (no frameworks)
+    ========================================================== */
+
+    :root{
+      /* Palette adapted to your screenshots:
+         warm beige / cream backgrounds, taupe lines, graphite text */
+      --bg: #F6F1EA;          /* warm beige (body) */
+      --surface: #FFFFFF;     /* cards */
+      --surface-2:#FBF7F1;    /* soft cream sections */
+      --ink: #1E1B18;         /* graphite / soft black */
+      --muted:#6F675F;        /* warm grey-brown */
+      --taupe:#B7AEA5;        /* lines / subtle accents */
+      --line: rgba(30,27,24,.12);
+
+      --accent: #8B7D73;      /* muted brown for CTAs */
+      --accent-2: #A89A8F;    /* secondary accent */
+
+      --font-serif: "Playfair Display", serif;
+      --font-sans: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+      --container: 1240px;
+      --radius: 26px;
+      --radius-sm: 18px;
+
+      --shadow: 0 18px 50px rgba(30,27,24,.08);
+      --shadow-soft: 0 10px 30px rgba(30,27,24,.06);
+
+      --ease: cubic-bezier(.25,.46,.45,.94);
+      --section-pad: clamp(70px, 10vw, 130px);
+    }
+
+    /* Reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:var(--font-sans);
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.7;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    img{display:block;width:100%;height:100%;object-fit:cover}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    :focus-visible{outline:2px solid rgba(139,125,115,.6);outline-offset:3px;border-radius:12px}
+
+    /* Layout */
+    .container{width:min(92%, var(--container)); margin:0 auto;}
+    .section{padding: var(--section-pad) 0; position:relative;}
+    .grid-2{display:grid; grid-template-columns: 1fr 1fr; gap: clamp(22px, 5vw, 70px);}
+    .grid-3{display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px;}
+    .center{display:flex; align-items:center; justify-content:center;}
+    .between{display:flex; align-items:center; justify-content:space-between; gap:18px;}
+    .stack{display:flex; flex-direction:column; gap:16px;}
+
+    /* Type system (editorial) */
+    h1,h2,h3{font-family:var(--font-serif); font-weight:400; line-height:1.08}
+    .display-1{font-size: clamp(2.6rem, 6vw, 5.2rem); letter-spacing: -0.03em;}
+    .display-2{font-size: clamp(2.0rem, 4.2vw, 3.6rem); letter-spacing: -0.02em;}
+    .title{font-size: clamp(1.5rem, 2.4vw, 2.2rem);}
+    .lead{font-size: clamp(1.02rem, 1.2vw, 1.08rem); color: rgba(30,27,24,.88);}
+    .muted{color: var(--muted);}
+
+    /* Uppercase section label like in screenshots */
+    .kicker{
+      font-size: .78rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: rgba(30,27,24,.65);
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+    }
+    .kicker:before{
+      content:"";
+      width:34px;height:1px;background: rgba(30,27,24,.25);
+      display:inline-block;
+    }
+
+    /* Buttons (clean, elegant) */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(30,27,24,.22);
+      background: transparent;
+      color: var(--ink);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: .78rem;
+      transition: .35s var(--ease);
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(30,27,24,.35)}
+    .btn-primary{
+      background: var(--accent);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 12px 30px rgba(139,125,115,.25);
+    }
+    .btn-primary:hover{background: #7D6F66}
+    .btn-ghost{
+      background: transparent;
+      border-color: rgba(139,125,115,.35);
+      color: var(--ink);
+    }
+    .btn-ghost:hover{background: rgba(139,125,115,.08)}
+    .btn-block{width:100%}
+
+    /* Header (screenshot-like: light, thin lines) */
+    header{
+      position:fixed; inset:0 0 auto 0;
+      z-index:1000;
+      padding: 18px 0;
+      transition: .35s var(--ease);
+      background: rgba(246,241,234,.35);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid transparent;
+    }
+    header.scrolled{
+      background: rgba(251,247,241,.92);
+      border-bottom: 1px solid rgba(30,27,24,.10);
+    }
+    .logo{
+      display:flex; align-items:center; gap:12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .logo-mark{
+      width:32px;height:32px;border-radius: 999px;
+      border: 1px solid rgba(30,27,24,.25);
+      position:relative;
+    }
+    .logo-mark:after{
+      content:"";
+      position:absolute; inset: 7px 11px;
+      border-left: 1px solid rgba(30,27,24,.55);
+      transform: rotate(10deg);
+    }
+    .logo-text{
+      line-height:1.1;
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+    }
+    .logo-text small{
+      display:block;
+      font-family: var(--font-sans);
+      font-size:.68rem;
+      letter-spacing:.28em;
+      color: rgba(30,27,24,.65);
+      margin-top:4px;
+      text-transform: uppercase;
+    }
+
+    nav{display:flex; gap:26px; align-items:center;}
+    .nav-links{display:flex; gap:24px; align-items:center;}
+    .nav-links a{
+      font-size:.78rem;
+      letter-spacing:.16em;
+      text-transform: uppercase;
+      color: rgba(30,27,24,.78);
+      position:relative;
+      padding:10px 0;
+      transition:.25s var(--ease);
+    }
+    .nav-links a:hover{color: rgba(30,27,24,1)}
+    .nav-links a:after{
+      content:"";
+      position:absolute; left:0; bottom:5px;
+      width:0; height:1px; background: rgba(30,27,24,.55);
+      transition:.25s var(--ease);
+    }
+    .nav-links a:hover:after{width:100%}
+
+    /* Burger */
+    .burger{
+      display:none;
+      width:46px;height:46px;
+      border-radius: 999px;
+      border:1px solid rgba(30,27,24,.18);
+      background: rgba(255,255,255,.55);
+      backdrop-filter: blur(10px);
+      cursor:pointer;
+      align-items:center; justify-content:center;
+      transition:.25s var(--ease);
+    }
+    .burger:hover{border-color: rgba(30,27,24,.30)}
+    .burger span{
+      width:18px;height:1px;background: rgba(30,27,24,.75);
+      position:relative; display:block;
+    }
+    .burger span:before,.burger span:after{
+      content:""; position:absolute; left:0; width:18px; height:1px; background: rgba(30,27,24,.75);
+      transition:.25s var(--ease);
+    }
+    .burger span:before{top:-6px}
+    .burger span:after{top:6px}
+    .burger[aria-expanded="true"] span{background:transparent}
+    .burger[aria-expanded="true"] span:before{top:0; transform:rotate(45deg)}
+    .burger[aria-expanded="true"] span:after{top:0; transform:rotate(-45deg)}
+
+    /* Mobile drawer */
+    .drawer{
+      position: fixed;
+      inset: 70px 14px auto 14px;
+      background: rgba(251,247,241,.96);
+      border:1px solid rgba(30,27,24,.10);
+      border-radius: 22px;
+      box-shadow: var(--shadow-soft);
+      padding: 18px;
+      transform: translateY(-12px);
+      opacity:0; pointer-events:none;
+      transition:.25s var(--ease);
+      z-index: 999;
+    }
+    .drawer.open{opacity:1; transform: translateY(0); pointer-events:auto}
+    .drawer a{
+      display:flex;
+      padding: 14px 12px;
+      border-radius: 14px;
+      font-size:.86rem;
+      letter-spacing:.10em;
+      text-transform: uppercase;
+      color: rgba(30,27,24,.85);
+    }
+    .drawer a:hover{background: rgba(139,125,115,.08)}
+    .drawer .drawer-cta{margin-top:10px}
+
+    /* Hero */
+    .hero{
+      min-height: 100vh;
+      padding-top: 96px; /* header space */
+      display:flex;
+      align-items:flex-end;
+      padding-bottom: 54px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(1200px 500px at 20% 10%, rgba(168,154,143,.25), transparent 60%),
+        radial-gradient(900px 500px at 80% 20%, rgba(139,125,115,.18), transparent 55%),
+        linear-gradient(180deg, rgba(246,241,234,.0), rgba(246,241,234,.55) 60%, rgba(246,241,234,.95));
+      z-index:1;
+      pointer-events:none;
+    }
+    .hero-media{
+      position:absolute; inset:0;
+      z-index:0;
+    }
+    .hero-media img{
+      filter: saturate(.92) contrast(.95);
+      transform: scale(1.03);
+    }
+    .hero-overlay{
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(30,27,24,.25), rgba(30,27,24,.05) 55%, rgba(246,241,234,.92));
+      z-index:0;
+      pointer-events:none;
+    }
+    .hero-content{
+      position:relative; z-index:2;
+      color: var(--ink);
+    }
+    .hero-card{
+      background: rgba(251,247,241,.72);
+      border:1px solid rgba(30,27,24,.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      padding: clamp(18px, 3.5vw, 34px);
+      max-width: 980px;
+      backdrop-filter: blur(10px);
+    }
+    .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+
+    /* Social proof strip */
+    .proof{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .proof-item{
+      background: rgba(255,255,255,.7);
+      border: 1px solid rgba(30,27,24,.10);
+      border-radius: 18px;
+      padding: 14px 14px;
+      display:flex; flex-direction:column; gap:6px;
+      min-height: 78px;
+    }
+    .proof-item b{font-weight:500}
+    .proof-item span{font-size:.88rem; color: var(--muted)}
+
+    /* Sections & Cards */
+    .card{
+      background: var(--surface);
+      border: 1px solid rgba(30,27,24,.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+    }
+    .card.pad{padding: clamp(18px, 3.2vw, 34px);}
+    .divider{
+      height:1px;background: rgba(30,27,24,.12);
+      margin: 22px 0;
+    }
+    .accent-box{
+      background: var(--surface-2);
+      border: 1px solid rgba(30,27,24,.10);
+      border-radius: 22px;
+      padding: 18px 18px;
+      color: rgba(30,27,24,.88);
+    }
+    .accent-box strong{
+      letter-spacing:.06em;
+    }
+
+    /* About split */
+    .about{
+      display:grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: clamp(18px, 4vw, 60px);
+      align-items:center;
+    }
+    .about-media{
+      height: clamp(320px, 52vw, 700px);
+      border-radius: var(--radius);
+      overflow:hidden;
+      border: 1px solid rgba(30,27,24,.10);
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* Models gallery (horizontal editorial) */
+    .models-head{margin-bottom: 22px}
+    .models-slider{
+      display:flex;
+      gap: 14px;
+      overflow-x:auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 8px;
+      scrollbar-width:none;
+    }
+    .models-slider::-webkit-scrollbar{display:none}
+    .model{
+      min-width: 260px;
+      height: 430px;
+      border-radius: 26px;
+      overflow:hidden;
+      position:relative;
+      scroll-snap-align: start;
+      border: 1px solid rgba(30,27,24,.10);
+      box-shadow: var(--shadow-soft);
+      background: #ddd;
+    }
+    .model img{
+      filter: grayscale(10%) contrast(.95);
+      transition:.6s var(--ease);
+      transform: scale(1.02);
+    }
+    .model:hover img{transform: scale(1.08); filter: grayscale(0%) contrast(1)}
+    .model::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, transparent 55%, rgba(30,27,24,.50));
+      pointer-events:none;
+    }
+    .model-meta{
+      position:absolute; left:16px; bottom:16px;
+      color:#fff; z-index:2;
+      display:flex; flex-direction:column; gap:4px;
+      opacity:0; transform: translateY(10px);
+      transition:.35s var(--ease);
+    }
+    .model:hover .model-meta{opacity:1; transform: translateY(0)}
+    .model-meta small{
+      font-family:var(--font-sans);
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      font-size:.72rem;
+      opacity:.85;
+    }
+
+    /* Training areas */
+    .pill-row{
+      display:flex; flex-wrap:wrap; gap:10px; margin-top: 16px;
+    }
+    .pill{
+      border:1px solid rgba(30,27,24,.14);
+      background: rgba(255,255,255,.55);
+      padding: 10px 14px;
+      border-radius: 999px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      font-size:.74rem;
+      color: rgba(30,27,24,.80);
+    }
+
+    /* Program */
+    .program{
+      display:grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: clamp(18px, 4vw, 70px);
+      align-items:start;
+    }
+    .sticky{
+      position: sticky;
+      top: 110px;
+    }
+    .list{
+      display:flex; flex-direction:column;
+      border-top: 1px solid rgba(30,27,24,.10);
+    }
+    .item{
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(30,27,24,.10);
+      display:flex; gap:14px; justify-content:space-between; align-items:flex-start;
+    }
+    .item b{
+      font-family: var(--font-serif);
+      font-weight:400;
+      font-size: 1.25rem;
+      min-width: 220px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center; gap:10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(139,125,115,.10);
+      border: 1px solid rgba(139,125,115,.22);
+      font-size:.76rem;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: rgba(30,27,24,.85);
+      width: fit-content;
+    }
+
+    /* Online card */
+    .online-card{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items:center;
+      overflow:hidden;
+    }
+    .online-media{
+      min-height: 320px;
+      border-radius: 22px;
+      overflow:hidden;
+      border: 1px solid rgba(30,27,24,.10);
+    }
+
+    /* Pricing */
+    .pricing{
+      background: #1C1917;
+      color: #F6F1EA;
+    }
+    .pricing .muted{color: rgba(246,241,234,.72)}
+    .price-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .price{
+      border-radius: 26px;
+      border: 1px solid rgba(246,241,234,.18);
+      padding: 26px 22px;
+      background: rgba(255,255,255,.03);
+      transition:.35s var(--ease);
+      min-height: 250px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+    }
+    .price:hover{transform: translateY(-2px); background: rgba(255,255,255,.06)}
+    .price h3{
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+    }
+    .price .tag{
+      letter-spacing:.20em;
+      text-transform:uppercase;
+      font-size:.74rem;
+      color: rgba(246,241,234,.78);
+      display:inline-flex; gap:10px; align-items:center;
+    }
+    .price .tag:before{content:""; width:18px; height:1px; background: rgba(246,241,234,.45)}
+    .price.best{
+      background: rgba(246,241,234,.92);
+      color: #1C1917;
+      border-color: rgba(246,241,234,.92);
+      box-shadow: 0 18px 60px rgba(0,0,0,.25);
+    }
+    .price.best .muted{color: rgba(28,25,23,.70)}
+    .price.best .tag{color: rgba(28,25,23,.65)}
+    .price.best .tag:before{background: rgba(28,25,23,.35)}
+    .price .btn{margin-top:auto}
+    .pricing .btn{border-color: rgba(246,241,234,.35); color: #F6F1EA}
+    .pricing .btn:hover{border-color: rgba(246,241,234,.55)}
+    .pricing .btn-primary{border-color: transparent}
+
+    /* FAQ */
+    .faq{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    details{
+      background: var(--surface);
+      border: 1px solid rgba(30,27,24,.10);
+      border-radius: 20px;
+      padding: 16px 16px;
+      box-shadow: var(--shadow-soft);
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      font-weight:500;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary:after{
+      content:"+";
+      width:34px;height:34px;
+      border-radius:999px;
+      display:grid;place-items:center;
+      border:1px solid rgba(30,27,24,.14);
+      color: rgba(30,27,24,.75);
+      transition:.25s var(--ease);
+      flex: 0 0 auto;
+    }
+    details[open] summary:after{content:"—"; transform: rotate(0deg)}
+    details p{margin-top: 10px; color: var(--muted)}
+
+    /* Final CTA */
+    .cta{
+      background: var(--surface-2);
+      border-top: 1px solid rgba(30,27,24,.08);
+      border-bottom: 1px solid rgba(30,27,24,.08);
+    }
+    .cta .card{box-shadow:none}
+    .cta-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 18px;
+      flex-wrap:wrap;
+    }
+
+    /* Footer */
+    footer{
+      padding: 70px 0;
+      background: #fff;
+      border-top: 1px solid rgba(30,27,24,.08);
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 20px;
+      align-items:end;
+    }
+    .footer-links{display:flex; gap:16px; flex-wrap:wrap}
+    .footer-links a{
+      border-bottom: 1px solid rgba(30,27,24,.35);
+      padding-bottom: 2px;
+    }
+    .big-word{
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 9vw, 7.2rem);
+      letter-spacing: -0.03em;
+      opacity: .10;
+      line-height: .85;
+      white-space:nowrap;
+      overflow:hidden;
+      user-select:none;
+      margin-bottom: 16px;
+    }
+
+    /* Reveal animation */
+    .reveal{
+      opacity:0;
+      transform: translateY(18px);
+      transition: .9s var(--ease);
+    }
+    .reveal.show{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .grid-2{grid-template-columns: 1fr;}
+      .grid-3{grid-template-columns: 1fr;}
+      .about{grid-template-columns: 1fr;}
+      .program{grid-template-columns: 1fr;}
+      .sticky{position:static}
+      .online-card{grid-template-columns: 1fr;}
+      .price-grid{grid-template-columns: 1fr;}
+      .faq{grid-template-columns: 1fr;}
+      .footer-grid{grid-template-columns: 1fr;}
+      .proof{grid-template-columns: 1fr 1fr;}
+    }
+    @media (max-width: 820px){
+      .nav-links{display:none}
+      .burger{display:flex}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ================= HEADER ================= -->
+  <header id="siteHeader">
+    <div class="container between">
+      <a class="logo" href="#top" aria-label="PRIME MODEL ACADEMY — на початок сторінки">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span class="logo-text">
+          PRIME
+          <small>MODEL ACADEMY</small>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Головна навігація">
+        <a href="#about">Про академію</a>
+        <a href="#models">Наші моделі</a>
+        <a href="#course">Про курс</a>
+        <a href="#program">Model Pro</a>
+        <a href="#pricing">Ціни</a>
+        <a href="#contact">Контакти</a>
+      </nav>
+
+      <div class="between" style="gap:10px">
+        <a class="btn btn-ghost" href="#contact">Стати моделлю</a>
+        <button class="burger" id="burger" aria-label="Відкрити меню" aria-expanded="false" aria-controls="drawer">
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer" id="drawer" role="dialog" aria-label="Мобільне меню">
+    <a href="#about">Про академію</a>
+    <a href="#models">Наші моделі</a>
+    <a href="#course">Про курс</a>
+    <a href="#program">Model Pro</a>
+    <a href="#pricing">Ціни</a>
+    <a href="#online">Online</a>
+    <a href="#contact">Контакти</a>
+    <div class="drawer-cta">
+      <a class="btn btn-primary btn-block" href="#contact">Почни свій шлях</a>
+    </div>
+  </div>
+
+  <main id="top">
+    <!-- ================= HERO ================= -->
+    <section class="hero" aria-label="Головний екран">
+      <div class="hero-media" aria-hidden="true">
+        <!-- Ваше фото 1 -->
+        <img src="1.jpeg" alt="" />
+      </div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="container hero-content">
+        <div class="hero-card reveal">
+          <span class="kicker">Модельні заняття • Позування • Дефіле</span>
+
+          <h1 class="display-1" style="margin-top:14px">
+            PRIME MODEL ACADEMY
+          </h1>
+
+          <p class="lead" style="margin-top:14px; max-width: 62ch">
+            Модельна карʼєра починається тут. Навчання. Впевненість. Індустрія моди.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#program">Почни свій шлях</a>
+            <a class="btn btn-ghost" href="#course">Дізнатися більше</a>
+          </div>
+
+          <div class="proof" role="list" aria-label="Переваги">
+            <div class="proof-item" role="listitem">
+              <b>100+ учнів</b>
+              <span>Навчання та практика</span>
+            </div>
+            <div class="proof-item" role="listitem">
+              <b>Викладачі-практики</b>
+              <span>Досвід у сфері моди</span>
+            </div>
+            <div class="proof-item" role="listitem">
+              <b>Онлайн та офлайн</b>
+              <span>Гнучкий формат</span>
+            </div>
+            <div class="proof-item" role="listitem">
+              <b>Міжнародна база</b>
+              <span>Працює в будь-якій країні</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section id="about" class="section">
+      <div class="container about">
+        <div class="about-media reveal">
+          <!-- Ваше фото 2 -->
+          <img src="2.jpeg" alt="PRIME MODEL ACADEMY — атмосфера академії" />
+        </div>
+
+        <div class="stack reveal">
+          <span class="kicker">Prime Academy</span>
+          <h2 class="display-2">Prime Academy</h2>
+
+          <p class="muted">
+            Це простір для тих, хто мріє про кар’єру у світі моди, стилю та творчості.
+            Наша школа об’єднує професійних викладачів, досвідчених моделей та стилістів, щоб допомогти кожному учневі розкрити свій потенціал та відчути себе впевнено на подіумі.
+          </p>
+
+          <div class="accent-box">
+            <strong>Модельна кар’єра починається з Prime Academy.</strong>
+            <div class="divider"></div>
+            <p class="muted" style="margin:0">
+              Місія нашої школи — розвиток професійних навичок у моделінгу, впевненості в собі та глибоких знань про індустрію моди.
+            </p>
+          </div>
+
+          <div class="pill-row" aria-label="Ключові напрямки">
+            <span class="pill">Дефіле</span>
+            <span class="pill">Фотопозування</span>
+            <span class="pill">Стиль і макіяж</span>
+            <span class="pill">Психологія впевненості</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MODELS ================= -->
+    <section id="models" class="section">
+      <div class="container">
+        <div class="between models-head">
+          <div class="stack" style="gap:10px">
+            <span class="kicker">Наші моделі</span>
+            <h2 class="display-2">Наші моделі</h2>
+            <p class="muted" style="max-width:70ch">
+              Галерея прикладів. Заміни фото на власні матеріали портфоліо (або лиши як плейсхолдери).
+            </p>
+          </div>
+
+          <div class="between" style="gap:10px">
+            <button class="btn" id="modelsPrev" type="button" aria-label="Прокрутити вліво">←</button>
+            <button class="btn" id="modelsNext" type="button" aria-label="Прокрутити вправо">→</button>
+          </div>
+        </div>
+
+        <div class="models-slider reveal" id="modelsSlider" aria-label="Слайдер моделей">
+          <article class="model" aria-label="Модель 1">
+            <!-- Ваше фото 1 -->
+            <img src="1.jpeg" alt="Модель 1" />
+            <div class="model-meta">
+              <h3 class="title">Anna</h3>
+              <small>Fashion</small>
+            </div>
+          </article>
+          <article class="model" aria-label="Модель 2">
+            <!-- Ваше фото 2 -->
+            <img src="2.jpeg" alt="Модель 2" />
+            <div class="model-meta">
+              <h3 class="title">Maria</h3>
+              <small>Runway</small>
+            </div>
+          </article>
+          <article class="model" aria-label="Модель 3">
+            <!-- Ваше фото 3 -->
+            <img src="3.jpeg" alt="Модель 3" />
+            <div class="model-meta">
+              <h3 class="title">Elena</h3>
+              <small>Commercial</small>
+            </div>
+          </article>
+          <article class="model" aria-label="Модель 4">
+            <!-- Ваше фото 4 -->
+            <img src="4.jpeg" alt="Модель 4" />
+            <div class="model-meta">
+              <h3 class="title">Sofia</h3>
+              <small>Fashion</small>
+            </div>
+          </article>
+
+          <!-- Якщо потрібно — залишаємо плейсхолдери або видаляємо -->
+          <article class="model" aria-label="Модель 5">
+            <img src="5.jpeg" alt="Модель 5" />
+            <div class="model-meta">
+              <h3 class="title">Kate</h3>
+              <small>Runway</small>
+            </div>
+          </article>
+          <article class="model" aria-label="Модель 6">
+            <img src="6.jpeg" alt="Модель 6" />
+            <div class="model-meta">
+              <h3 class="title">Daria</h3>
+              <small>Commercial</small>
+            </div>
+          </article>
+        </div>
+
+        <div style="margin-top:16px" class="reveal">
+          <a class="btn btn-ghost" href="#contact">Переглянути всіх моделей</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT COURSE ================= -->
+    <section id="course" class="section">
+      <div class="container grid-2">
+        <div class="stack reveal">
+          <span class="kicker">Про що курс?</span>
+          <h2 class="display-2">Про що курс?</h2>
+          <p class="muted">
+            Курс дозволяє учням вдосконалювати свої навички у позуванні, дефіле та індустрії моди як онлайн, так і офлайн.
+            У нас ви знайдете досвідчених викладачів, які поділяться своїми знаннями та досвідом, допомагаючи вам стати впевненими моделями.
+            Наша школа надає велике значення індивідуальному розвитку, тому кожен учень отримає особисту увагу та підхід.
+          </p>
+
+          <div class="accent-box">
+            <strong>На курсі ви отримаєте сильну універсальну базу, яка працює в будь-якій країні.</strong>
+          </div>
+        </div>
+
+        <div class="card pad reveal">
+          <span class="kicker">Напрями навчання</span>
+          <h3 class="title" style="margin-top:10px">Модельні заняття • Позування • Дефіле</h3>
+          <div class="divider"></div>
+
+          <div class="stack" style="gap:10px">
+            <div class="between">
+              <span class="muted">Дефіле</span>
+              <span style="color:rgba(30,27,24,.65)">01</span>
+            </div>
+            <div class="between">
+              <span class="muted">Позування</span>
+              <span style="color:rgba(30,27,24,.65)">02</span>
+            </div>
+            <div class="between">
+              <span class="muted">Робота з камерою</span>
+              <span style="color:rgba(30,27,24,.65)">03</span>
+            </div>
+            <div class="between">
+              <span class="muted">Модельна етика</span>
+              <span style="color:rgba(30,27,24,.65)">04</span>
+            </div>
+          </div>
+
+          <div style="margin-top:18px">
+            <a class="btn btn-primary btn-block" href="#contact">Стати моделлю</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROGRAM ================= -->
+    <section id="program" class="section" style="background: rgba(255,255,255,.55); border-top:1px solid rgba(30,27,24,.07); border-bottom:1px solid rgba(30,27,24,.07);">
+      <div class="container program">
+        <div class="stack sticky reveal">
+          <span class="kicker">Стань моделлю</span>
+          <h2 class="display-2">План “Model Pro”</h2>
+
+          <div class="badge">Вік 13–29 років • 3 місяці (повний курс)</div>
+
+          <p class="muted" style="max-width:65ch">
+            Програма, що системно формує професійні навички та впевненість у моделінгу.
+          </p>
+
+          <div class="card pad" style="box-shadow:none">
+            <div class="between">
+              <span class="muted">За 1 місяць навчання</span>
+              <strong style="font-size:1.2rem">6500 грн</strong>
+            </div>
+            <div class="divider"></div>
+            <div class="between" style="align-items:flex-start">
+              <span class="muted" style="max-width:36ch">
+                При придбанні повного курсу — знижка 20%.
+              </span>
+              <span class="badge" style="padding:8px 12px">-20%</span>
+            </div>
+            <div style="margin-top:16px">
+              <a class="btn btn-primary btn-block" href="#contact">Записатися на курс</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="list reveal" aria-label="Програма курсу Model Pro">
+          <div class="item">
+            <b>Дефіле</b>
+            <p class="muted">Постава, темп, впевненість, подіумна техніка.</p>
+          </div>
+          <div class="item">
+            <b>Основи моделінгу</b>
+            <p class="muted">Індустрія моди, базові стандарти, підготовка до кастингів.</p>
+          </div>
+          <div class="item">
+            <b>Фотопозування</b>
+            <p class="muted">Ракурси, пластика, робота з емоціями, серії кадрів.</p>
+          </div>
+          <div class="item">
+            <b>Стиль і макіяж</b>
+            <p class="muted">Образи для кастингів, догляд, базові принципи.</p>
+          </div>
+          <div class="item">
+            <b>Акторська майстерність</b>
+            <p class="muted">Виразність, подача, впевненість у кадрі.</p>
+          </div>
+          <div class="item">
+            <b>Обличчя і фігура</b>
+            <p class="muted">Самопрезентація, позування, особисті сильні сторони.</p>
+          </div>
+          <div class="item">
+            <b>Зірка соцмереж</b>
+            <p class="muted">Контент, позиціонування, присутність у соцмережах.</p>
+          </div>
+          <div class="item">
+            <b>Психологія впевненості</b>
+            <p class="muted">Самооцінка, камера-френдлі, внутрішній ресурс.</p>
+          </div>
+
+          <div class="card pad" style="margin-top:18px">
+            <div class="online-media" style="height: 320px;">
+              <!-- Ваше фото 3 (бекстейдж/атмосфера) -->
+              <img src="3.jpeg" alt="Атмосфера навчання" />
+            </div>
+            <p class="muted" style="margin-top:14px">
+              Додай сюди власні фото занять/бекстейджу для максимальної довіри.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ONLINE ================= -->
+    <section id="online" class="section">
+      <div class="container">
+        <div class="card pad online-card reveal">
+          <div class="stack">
+            <span class="kicker">Online Course</span>
+            <h2 class="display-2" style="margin-top:10px">Online Course</h2>
+
+            <p class="muted">
+              Наше навчання проходить повністю онлайн, тому ви можете комфортно навчатися з будь-якої точки світу — це не створює жодних обмежень.
+            </p>
+
+            <div class="pill-row">
+              <span class="pill">Доступ з будь-якої країни</span>
+              <span class="pill">Живі заняття</span>
+              <span class="pill">Персональний фідбек</span>
+            </div>
+
+            <div style="margin-top:10px">
+              <a class="btn btn-ghost" href="#contact">Дізнатися більше</a>
+            </div>
+          </div>
+
+          <div class="online-media">
+            <!-- Ваше фото 4 -->
+            <img src="4.jpeg" alt="Online Course — навчання" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= INDIVIDUAL ================= -->
+    <section id="individual" class="section">
+      <div class="container grid-2">
+        <div class="stack reveal">
+          <span class="kicker">Індивідуальні заняття</span>
+          <h2 class="display-2">Індивідуальні заняття з моделінгу</h2>
+
+          <p class="muted">
+            Індивідуальні заняття з моделінгу — це персональний підхід до розкриття вашого потенціалу.
+            Під час уроків ви опануєте дефіле, позування, роботу з камерою та основи модельної етики з урахуванням ваших цілей і рівня підготовки.
+            Максимум уваги, практики та результату — у комфортному для вас темпі.
+          </p>
+
+          <a class="btn btn-primary" href="#pricing">Перейти до цін</a>
+        </div>
+
+        <div class="card pad reveal">
+          <span class="kicker">Що ви отримаєте</span>
+          <h3 class="title" style="margin-top:10px">Результат, який видно</h3>
+          <div class="divider"></div>
+          <ul class="muted" style="list-style:none; display:flex; flex-direction:column; gap:10px">
+            <li>• Персональний план під ваш рівень</li>
+            <li>• Робота з камерою та пластикою</li>
+            <li>• Підготовка до кастингів/зйомок</li>
+            <li>• Відпрацювання дефіле та подачі</li>
+          </ul>
+          <div style="margin-top:16px">
+            <a class="btn btn-ghost btn-block" href="#contact">Придбати заняття</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PRICING ================= -->
+    <section id="pricing" class="section pricing">
+      <div class="container">
+        <div class="stack reveal" style="gap:10px">
+          <span class="kicker" style="color: rgba(246,241,234,.75);">
+            Ціни
+          </span>
+          <h2 class="display-2">Ціни — індивідуальні заняття</h2>
+          <p class="muted" style="max-width:70ch">
+            Оберіть формат, який найкраще відповідає вашій цілі. Найвигідніший пакет — 10 занять зі знижкою.
+          </p>
+        </div>
+
+        <div class="price-grid reveal" style="margin-top:18px">
+          <div class="price">
+            <div class="tag">1 заняття</div>
+            <h3>800 грн</h3>
+            <p class="muted">Персональне заняття для відпрацювання конкретних навичок або підготовки.</p>
+            <a class="btn" href="#contact">Придбати заняття</a>
+          </div>
+
+          <div class="price">
+            <div class="tag">5 занять</div>
+            <h3>4000 грн</h3>
+            <p class="muted">Оптимально для системної роботи та помітного прогресу за короткий період.</p>
+            <a class="btn" href="#contact">Придбати заняття</a>
+          </div>
+
+          <div class="price best">
+            <div class="tag">10 занять • Best offer</div>
+            <h3>6400 грн</h3>
+            <p class="muted">
+              При придбанні 10 занять — знижка 20% (замість 8000 грн).
+            </p>
+            <a class="btn btn-primary" href="#contact">Придбати заняття</a>
+          </div>
+        </div>
+
+        <div class="card pad reveal" style="margin-top:18px; background: rgba(255,255,255,.05); border-color: rgba(246,241,234,.15);">
+          <div class="between" style="flex-wrap:wrap">
+            <p class="muted" style="margin:0">
+              Хочете повний курс? Перейдіть до програми <strong style="color:#F6F1EA">Model Pro</strong>.
+            </p>
+            <a class="btn" href="#program">Переглянути Model Pro</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section id="faq" class="section">
+      <div class="container">
+        <div class="stack reveal" style="gap:10px">
+          <span class="kicker">FAQ</span>
+          <h2 class="display-2">Поширені запитання</h2>
+          <p class="muted">Короткі відповіді, які знімають сумніви та пришвидшують рішення.</p>
+        </div>
+
+        <div class="faq reveal">
+          <details>
+            <summary>Чи потрібен досвід?</summary>
+            <p>Ні. Програма підходить як для початківців, так і для тих, хто хоче систематизувати навички.</p>
+          </details>
+
+          <details>
+            <summary>Чи підходить курс для початківців?</summary>
+            <p>Так. Ми даємо фундамент: дефіле, позування, роботу з камерою та розуміння індустрії.</p>
+          </details>
+
+          <details>
+            <summary>Онлайн чи офлайн?</summary>
+            <p>Доступні обидва формати. Онлайн дозволяє навчатися з будь-якої точки світу.</p>
+          </details>
+
+          <details>
+            <summary>З якого віку?</summary>
+            <p>Програма Model Pro — для віку 13–29 років. Індивідуальні заняття — за домовленістю.</p>
+          </details>
+
+          <details>
+            <summary>Чи допомагаєте з портфоліо?</summary>
+            <p>Так, можемо рекомендувати формат зйомок та підготовку до тестів (додайте конкретику за потреби).</p>
+          </details>
+
+          <details>
+            <summary>Як записатися?</summary>
+            <p>Натисніть “Стати моделлю” або “Придбати заняття” — і напишіть нам у месенджер. (Посилання можна замінити.)</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FINAL CTA ================= -->
+    <section class="section cta" aria-label="Заклик до дії">
+      <div class="container">
+        <div class="card pad reveal" style="background: rgba(255,255,255,.70)">
+          <div class="cta-inner">
+            <div class="stack" style="gap:10px">
+              <span class="kicker">Стати моделлю</span>
+              <h2 class="display-2" style="margin:0">Почни свій шлях у моделінгу вже сьогодні</h2>
+              <p class="muted" style="margin:0; max-width:70ch">
+                Напишіть нам — підберемо формат (Model Pro / індивідуальні / онлайн) і розклад під ваші цілі.
+              </p>
+            </div>
+            <div class="stack" style="gap:10px; min-width:260px">
+              <a class="btn btn-primary btn-block" href="#contact">Стати моделлю</a>
+              <a class="btn btn-ghost btn-block" href="#pricing">Переглянути ціни</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT / FOOTER ================= -->
+    <footer id="contact">
+      <div class="container">
+        <div class="big-word" aria-hidden="true">PRIME ACADEMY</div>
+
+        <div class="footer-grid">
+          <div class="stack reveal">
+            <span class="kicker">Контакти</span>
+            <h3 class="title">Звʼязатися</h3>
+
+            <p class="muted">
+              Місто: Київ (за потреби змініть) <br />
+              Телефон: +380 (99) 000 00 00 <br />
+              Email: hello@primemodelacademy.com
+            </p>
+
+            <div class="footer-links" aria-label="Соцмережі">
+              <a href="#" aria-label="WhatsApp">WhatsApp</a>
+              <a href="#" aria-label="Telegram">Telegram</a>
+              <a href="#" aria-label="Instagram">Instagram</a>
+            </div>
+
+            <div style="margin-top:6px">
+              <a class="btn btn-primary" href="#" aria-label="Написати у WhatsApp або Telegram">Написати у WhatsApp/Telegram</a>
+            </div>
+          </div>
+
+          <div class="stack reveal" style="align-items:flex-end; text-align:right">
+            <p class="muted" style="margin:0">
+              © <span id="year"></span> PRIME MODEL ACADEMY<br />
+              Усі права захищені.
+            </p>
+            <p class="muted" style="margin:0; font-size:.88rem">
+              Політика конфіденційності • Публічна оферта
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // ===== Header scroll state =====
+    const header = document.getElementById('siteHeader');
+    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 20);
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+
+    // ===== Mobile drawer =====
+    const burger = document.getElementById('burger');
+    const drawer = document.getElementById('drawer');
+    const toggleDrawer = (open) => {
+      const isOpen = open ?? !drawer.classList.contains('open');
+      drawer.classList.toggle('open', isOpen);
+      burger.setAttribute('aria-expanded', String(isOpen));
+      burger.setAttribute('aria-label', isOpen ? 'Закрити меню' : 'Відкрити меню');
+    };
+
+    burger.addEventListener('click', () => toggleDrawer());
+    drawer.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => toggleDrawer(false));
+    });
+    document.addEventListener('click', (e) => {
+      const isClickInside = drawer.contains(e.target) || burger.contains(e.target);
+      if (!isClickInside) toggleDrawer(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') toggleDrawer(false);
+    });
+
+    // ===== Reveal on scroll (IntersectionObserver) =====
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.14 });
+    reveals.forEach(el => io.observe(el));
+
+    // ===== Models slider buttons =====
+    const slider = document.getElementById('modelsSlider');
+    document.getElementById('modelsPrev').addEventListener('click', () => {
+      slider.scrollBy({ left: -360, behavior: 'smooth' });
+    });
+    document.getElementById('modelsNext').addEventListener('click', () => {
+      slider.scrollBy({ left: 360, behavior: 'smooth' });
+    });
+
+    // ===== Footer year =====
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
